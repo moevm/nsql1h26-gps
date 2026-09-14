@@ -26,11 +26,11 @@ services:
       - neo4j_logs:/logs
       - neo4j_import:/var/lib/neo4j/import
       - neo4j_plugins:/plugins
-  etl_test:
+  hello_world:
     build:
       context: .                   
-      dockerfile: cmd/etl/Dockerfile
-    container_name: etl
+      dockerfile: hello_world/Dockerfile
+    container_name: hello_world
     restart: on-failure
     environment:
       - NEO4J_HOST=neo4j
@@ -38,8 +38,8 @@ services:
       - NEO4J_USER=${NEO4J_USER:-neo4j}
       - NEO4J_PASSWORD=${NEO4J_PASSWORD}
     volumes:
-      - ./testdata:/app/testdata
-    command: ["/app/etl", "/app/testdata/osm/map.osm.pbf"]
+      - ./data:/app/data
+    command: ["/app/hello_world", "/app/data/osm/monaco.osm.pbf"]
     depends_on:
       neo4j:
         condition: service_healthy
