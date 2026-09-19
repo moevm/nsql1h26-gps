@@ -31,7 +31,7 @@ type UnlockedProperties @relationshipProperties {
   unlockedAt: DateTime!
 }
 
-type User {
+type User @node {
   id: ID! @id
   username: String!
   status: UserStatus! @default(value: ACTIVE)
@@ -46,15 +46,15 @@ type User {
   logs: [EventLog!]! @relationship(type: "GENERATED", direction: OUT)
 }
 
-type Cell {
-  index: String! @unique
+type Cell @node {
+  index: String! 
   resolution: Int! @default(value: 9)
   
   pois: [POI!]! @relationship(type: "CONTAINS", direction: OUT)
   visitors: [User!]! @relationship(type: "VISITED", direction: IN, properties: "VisitedProperties")
 }
 
-type POI {
+type POI @node {
   id: ID! @id
   name: String!
   type: String!
@@ -68,7 +68,7 @@ type POI {
   cell: Cell @relationship(type: "CONTAINS", direction: IN)
 }
 
-type Quest {
+type Quest @node {
   id: ID! @id
   name: String!
   description: String
@@ -83,7 +83,7 @@ type Quest {
   blockedQuests: [Quest!]! @relationship(type: "PREREQUISITE_FOR", direction: OUT)
 }
 
-type Achievement {
+type Achievement @node {
   id: ID! @id
   name: String!
   description: String
@@ -97,12 +97,12 @@ type Achievement {
   prerequisites: [Achievement!]! @relationship(type: "DEPENDS_ON", direction: OUT)
 }
 
-type EventLog {
+type EventLog @node {
   id: ID! @id
   type: String!
   description: String
   details: String 
   timestamp: DateTime! @timestamp(operations: [CREATE])
 
-  user: User! @relationship(type: "GENERATED", direction: IN)
+  user: User @relationship(type: "GENERATED", direction: IN)
 }
