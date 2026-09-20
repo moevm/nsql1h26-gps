@@ -13,6 +13,9 @@ services:
       - NEO4J_server_memory_pagecache_size=1G
       - NEO4J_server_memory_heap_initial__size=1G
       - NEO4J_server_memory_heap_max__size=1G
+      # APOC is required by @neo4j/graphql (DateTime serialization etc.)
+      - NEO4J_dbms_security_procedures_allowlist=apoc.*
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.*
     healthcheck:
       test: ["CMD-SHELL", "cypher-shell -u ${NEO4J_USER:-neo4j} -p ${NEO4J_PASSWORD:-secretpassword} 'RETURN 1' >/dev/null 2>&1 || exit 1"]
       interval: 10s
