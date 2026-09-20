@@ -34,6 +34,7 @@ type UnlockedProperties @relationshipProperties {
 type User @node {
   id: ID! @id
   username: String!
+  passwordHash: String!
   status: UserStatus! @default(value: ACTIVE)
   note: String
   createdAt: DateTime! @timestamp(operations: [CREATE])
