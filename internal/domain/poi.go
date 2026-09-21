@@ -3,7 +3,7 @@ package domain
 import "github.com/uber/h3-go/v4"
 
 type POI struct {
-	ID          int64      `json:"id"`
+	OsmID       uint64     `json:"osmId"`
 	Name        string     `json:"name"`
 	Type        string     `json:"type"`
 	Description string     `json:"description"`

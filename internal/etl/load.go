@@ -13,32 +13,61 @@ import (
 const (
 	BATCH_SIZE    = 1000
 	LOAD_INTERVAL = time.Millisecond * 300
-	BATCH_LOAD    = `
-	UNWIND $batch AS item
 
-		MERGE (c:Cell { index: item.cellIndex })
-		ON CREATE SET
-			c.resolution = 9
-
-		MERGE (p:POI { id: item.id })
+	BATCH_LOAD_POIS = `
+		MERGE (c:IdCounter { label: 'POI' }) ON CREATE SET c.value = 1000
+		WITH c
+		UNWIND $batch AS item
+		MERGE (p:POI { osm_id: item.osmId })
 		ON CREATE SET
 			p.name = item.name,
 			p.type = item.type,
 			p.description = item.description,
 			p.tags = item.tags,
+			p.note = null,
 			p.location = point({ latitude: item.lat, longitude: item.lon }),
-			p.createdAt = datetime()
+			p.created_at = datetime(),
+			p.updated_at = datetime()
 		ON MATCH SET
 			p.name = item.name,
 			p.type = item.type,
 			p.description = item.description,
 			p.tags = item.tags,
 			p.location = point({ latitude: item.lat, longitude: item.lon }),
-			p.updatedAt = datetime()
+			p.updated_at = datetime()
+		WITH p, item
+		WHERE p.id IS NULL
+		// инкремент счётчика — в CALL-сабзапросе НА СТРОКУ: обычный UNWIND+SET
+		// не чейнит обновления (все строки читают одно значение — проверено)
+		CALL (item) {
+			MATCH (c:IdCounter { label: 'POI' })
+			SET c.value = c.value + 1
+			RETURN c.value AS newId
+		}
+		SET p.id = newId
+	`
 
-		MERGE (c)-[:CONTAINS]->(p)
+	BATCH_LOAD_CELLS = `
+		UNWIND $batch AS item
+		MATCH (p:POI { osm_id: item.osmId })
+		MERGE (cell:CELL { index: item.cellIndex })
+		ON CREATE SET cell.resolution = 9
+		MERGE (cell)-[:CONTAINS]->(p)
 	`
 )
+
+func toBatchItem(poi *domain.POI) map[string]any {
+	return map[string]any{
+		"osmId":       poi.OsmID,
+		"name":        poi.Name,
+		"type":        poi.Type,
+		"description": poi.Description,
+		"tags":        poi.Tags,
+		"lat":         poi.Location.Lat,
+		"lon":         poi.Location.Lon,
+		"cellIndex":   poi.Cell.String(),
+	}
+}
 
 func loadBatch(ctx context.Context, session neo4j.Session, pois []*domain.POI) error {
 	if len(pois) == 0 {
@@ -46,30 +75,21 @@ func loadBatch(ctx context.Context, session neo4j.Session, pois []*domain.POI) e
 	}
 
 	batch := make([]map[string]any, len(pois))
-
 	for i, poi := range pois {
-		batch[i] = map[string]any{
-			"id":          poi.ID,
-			"name":        poi.Name,
-			"type":        poi.Type,
-			"description": poi.Description,
-			"tags":        poi.Tags,
-			"lat":         poi.Location.Lat,
-			"lon":         poi.Location.Lon,
-			"cellIndex":   poi.Cell.String(),
-		}
+		batch[i] = toBatchItem(poi)
 	}
 
 	_, err := session.ExecuteWrite(ctx, func(tx neo4j.ManagedTransaction) (any, error) {
-		result, err := tx.Run(ctx, BATCH_LOAD, map[string]any{
-			"batch": batch,
-		})
-
-		if err != nil {
-			return nil, err
+		for _, query := range []string{BATCH_LOAD_POIS, BATCH_LOAD_CELLS} {
+			result, err := tx.Run(ctx, query, map[string]any{"batch": batch})
+			if err != nil {
+				return nil, err
+			}
+			if _, err := result.Consume(ctx); err != nil {
+				return nil, err
+			}
 		}
-
-		return result.Consume(ctx)
+		return nil, nil
 	})
 
 	return err
@@ -84,9 +104,6 @@ func loadPOIS(ctx context.Context, driver neo4j.Driver, chanPois <-chan *domain.
 	ticker := time.NewTicker(LOAD_INTERVAL)
 	defer ticker.Stop()
 
-	// При ошибке загрузки одного батча не останавливаем конвейер,
-	// чтобы не оставить scan заблокированным на отправке в канал,
-	// а запоминаем ошибку и возвращаем её в конце.
 	var lastErr error
 
 	flush := func() {

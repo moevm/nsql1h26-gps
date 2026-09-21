@@ -9,7 +9,7 @@ import (
 
 func transformNode(n *osm.Node) (*domain.POI, error) {
 	poi := &domain.POI{}
-	poi.ID = int64(n.ID)
+	poi.OsmID = uint64(n.ID)
 	poi.Location = domain.Coordinate{Lat: n.Lat, Lon: n.Lon}
 
 	tags, err := n.Tags.MarshalJSON()
