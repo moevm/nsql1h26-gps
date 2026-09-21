@@ -1,0 +1,1448 @@
+{
+  "meta": {
+    "format": "json",
+    "version": 1,
+    "exportedAt": "2026-09-20T00:00:00.000Z"
+  },
+  "nodes": [
+    {
+      "label": "USER",
+      "key": {
+        "id": 1
+      },
+      "properties": {
+        "id": 1,
+        "username": "player",
+        "password": "player123",
+        "status": "Active",
+        "note": null,
+        "exp": 320,
+        "total_distance_km": 4.2,
+        "last_cell": "89110606543ffff",
+        "created_at": "2026-09-01T10:00:00.000Z",
+        "updated_at": "2026-09-01T10:00:00.000Z",
+        "last_position": {
+          "latitude": 59.9446,
+          "longitude": 30.3351
+        }
+      }
+    },
+    {
+      "label": "USER",
+      "key": {
+        "id": 2
+      },
+      "properties": {
+        "id": 2,
+        "username": "user",
+        "password": "password",
+        "status": "Active",
+        "note": "Regular user",
+        "exp": 150,
+        "total_distance_km": 2.1,
+        "created_at": "2026-09-02T11:30:00.000Z",
+        "updated_at": "2026-09-10T09:00:00.000Z"
+      }
+    },
+    {
+      "label": "USER",
+      "key": {
+        "id": 3
+      },
+      "properties": {
+        "id": 3,
+        "username": "user123",
+        "password": "password",
+        "status": "Active",
+        "note": null,
+        "exp": 90,
+        "total_distance_km": 1.2,
+        "created_at": "2026-09-03T14:00:00.000Z",
+        "updated_at": "2026-09-03T14:00:00.000Z"
+      }
+    },
+    {
+      "label": "USER",
+      "key": {
+        "id": 4
+      },
+      "properties": {
+        "id": 4,
+        "username": "insanelylongnickname",
+        "password": "password",
+        "status": "Active",
+        "note": null,
+        "exp": 45,
+        "total_distance_km": 0.6,
+        "created_at": "2026-09-05T08:15:00.000Z",
+        "updated_at": "2026-09-05T08:15:00.000Z"
+      }
+    },
+    {
+      "label": "USER",
+      "key": {
+        "id": 5
+      },
+      "properties": {
+        "id": 5,
+        "username": "cheater",
+        "password": "password",
+        "status": "Banned",
+        "note": "Подозрение на накрутку дистанции",
+        "exp": 500,
+        "total_distance_km": 99.9,
+        "created_at": "2026-09-06T19:00:00.000Z",
+        "updated_at": "2026-09-15T12:00:00.000Z"
+      }
+    },
+    {
+      "label": "USER",
+      "key": {
+        "id": 6
+      },
+      "properties": {
+        "id": 6,
+        "username": "best_player",
+        "password": "password",
+        "status": "Active",
+        "note": null,
+        "exp": 210,
+        "total_distance_km": 3.5,
+        "created_at": "2026-09-08T16:45:00.000Z",
+        "updated_at": "2026-09-08T16:45:00.000Z"
+      }
+    },
+    {
+      "label": "USER",
+      "key": {
+        "id": 7
+      },
+      "properties": {
+        "id": 7,
+        "username": "ssssss",
+        "password": "password",
+        "status": "Active",
+        "note": null,
+        "exp": 60,
+        "total_distance_km": 0.8,
+        "created_at": "2026-09-10T10:30:00.000Z",
+        "updated_at": "2026-09-10T10:30:00.000Z"
+      }
+    },
+    {
+      "label": "USER",
+      "key": {
+        "id": 8
+      },
+      "properties": {
+        "id": 8,
+        "username": "nonameuser",
+        "password": "password",
+        "status": "Active",
+        "note": null,
+        "exp": 0,
+        "total_distance_km": 0,
+        "created_at": "2026-09-19T20:00:00.000Z",
+        "updated_at": "2026-09-19T20:00:00.000Z"
+      }
+    },
+    {
+      "label": "ADMIN",
+      "key": {
+        "id": 1
+      },
+      "properties": {
+        "id": 1,
+        "username": "admin",
+        "password": "admin123",
+        "created_at": "2026-09-01T00:00:00.000Z"
+      }
+    },
+    {
+      "label": "CELL",
+      "key": {
+        "index": "89110606407ffff"
+      },
+      "properties": {
+        "index": "89110606407ffff",
+        "resolution": 9
+      }
+    },
+    {
+      "label": "CELL",
+      "key": {
+        "index": "89110606413ffff"
+      },
+      "properties": {
+        "index": "89110606413ffff",
+        "resolution": 9
+      }
+    },
+    {
+      "label": "CELL",
+      "key": {
+        "index": "89110606477ffff"
+      },
+      "properties": {
+        "index": "89110606477ffff",
+        "resolution": 9
+      }
+    },
+    {
+      "label": "CELL",
+      "key": {
+        "index": "8911060642fffff"
+      },
+      "properties": {
+        "index": "8911060642fffff",
+        "resolution": 9
+      }
+    },
+    {
+      "label": "CELL",
+      "key": {
+        "index": "89110606543ffff"
+      },
+      "properties": {
+        "index": "89110606543ffff",
+        "resolution": 9
+      }
+    },
+    {
+      "label": "CELL",
+      "key": {
+        "index": "89110606097ffff"
+      },
+      "properties": {
+        "index": "89110606097ffff",
+        "resolution": 9
+      }
+    },
+    {
+      "label": "CELL",
+      "key": {
+        "index": "891106064abffff"
+      },
+      "properties": {
+        "index": "891106064abffff",
+        "resolution": 9
+      }
+    },
+    {
+      "label": "CELL",
+      "key": {
+        "index": "89110606093ffff"
+      },
+      "properties": {
+        "index": "89110606093ffff",
+        "resolution": 9
+      }
+    },
+    {
+      "label": "CELL",
+      "key": {
+        "index": "89110606087ffff"
+      },
+      "properties": {
+        "index": "89110606087ffff",
+        "resolution": 9
+      }
+    },
+    {
+      "label": "POI",
+      "key": {
+        "id": 1
+      },
+      "properties": {
+        "id": 1,
+        "name": "Дворцовая площадь",
+        "type": "monument",
+        "description": "Главная площадь Санкт-Петербурга с Александровской колонной",
+        "tags": "history,architecture,monument",
+        "note": null,
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z",
+        "location": {
+          "latitude": 59.9386,
+          "longitude": 30.3151
+        }
+      }
+    },
+    {
+      "label": "POI",
+      "key": {
+        "id": 2
+      },
+      "properties": {
+        "id": 2,
+        "name": "Исаакиевский собор",
+        "type": "monument",
+        "description": "Крупнейший православный храм города",
+        "tags": "religion,architecture,monument",
+        "note": null,
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z",
+        "location": {
+          "latitude": 59.9343,
+          "longitude": 30.3061
+        }
+      }
+    },
+    {
+      "label": "POI",
+      "key": {
+        "id": 3
+      },
+      "properties": {
+        "id": 3,
+        "name": "Казанский собор",
+        "type": "monument",
+        "description": "Собор с знаменитой колоннадой на Невском проспекте",
+        "tags": "religion,architecture,monument",
+        "note": null,
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z",
+        "location": {
+          "latitude": 59.9343,
+          "longitude": 30.3245
+        }
+      }
+    },
+    {
+      "label": "POI",
+      "key": {
+        "id": 4
+      },
+      "properties": {
+        "id": 4,
+        "name": "Спас на Крови",
+        "type": "monument",
+        "description": "Храм-памятник в русском стиле",
+        "tags": "religion,architecture,monument",
+        "note": null,
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z",
+        "location": {
+          "latitude": 59.94,
+          "longitude": 30.3287
+        }
+      }
+    },
+    {
+      "label": "POI",
+      "key": {
+        "id": 5
+      },
+      "properties": {
+        "id": 5,
+        "name": "Летний сад",
+        "type": "park",
+        "description": "Старейший парк города с фонтанами и скульптурами",
+        "tags": "nature,park,walk",
+        "note": null,
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z",
+        "location": {
+          "latitude": 59.9446,
+          "longitude": 30.3351
+        }
+      }
+    },
+    {
+      "label": "POI",
+      "key": {
+        "id": 6
+      },
+      "properties": {
+        "id": 6,
+        "name": "Михайловский сад",
+        "type": "park",
+        "description": "Сад при Русском музее",
+        "tags": "nature,park,walk",
+        "note": null,
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z",
+        "location": {
+          "latitude": 59.9395,
+          "longitude": 30.3333
+        }
+      }
+    },
+    {
+      "label": "POI",
+      "key": {
+        "id": 7
+      },
+      "properties": {
+        "id": 7,
+        "name": "Эрмитаж",
+        "type": "museum",
+        "description": "Один из крупнейших художественных музеев мира",
+        "tags": "art,museum,culture",
+        "note": "Популярная локация",
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z",
+        "location": {
+          "latitude": 59.9398,
+          "longitude": 30.3146
+        }
+      }
+    },
+    {
+      "label": "POI",
+      "key": {
+        "id": 8
+      },
+      "properties": {
+        "id": 8,
+        "name": "Русский музей",
+        "type": "museum",
+        "description": "Крупнейший музей русского искусства",
+        "tags": "art,museum,culture",
+        "note": null,
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z",
+        "location": {
+          "latitude": 59.9388,
+          "longitude": 30.3326
+        }
+      }
+    },
+    {
+      "label": "POI",
+      "key": {
+        "id": 9
+      },
+      "properties": {
+        "id": 9,
+        "name": "Кафе «Зингер»",
+        "type": "cafe",
+        "description": "Легендарное кафе в Доме Зингера на Невском",
+        "tags": "cafe,food,coffee",
+        "note": null,
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z",
+        "location": {
+          "latitude": 59.9357,
+          "longitude": 30.3255
+        }
+      }
+    },
+    {
+      "label": "POI",
+      "key": {
+        "id": 10
+      },
+      "properties": {
+        "id": 10,
+        "name": "Михайловский замок",
+        "type": "castle",
+        "description": "Загадочный замок императора Павла I",
+        "tags": "castle,history,architecture",
+        "note": null,
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z",
+        "location": {
+          "latitude": 59.9404,
+          "longitude": 30.3375
+        }
+      }
+    },
+    {
+      "label": "QUEST",
+      "key": {
+        "id": 1
+      },
+      "properties": {
+        "id": 1,
+        "name": "Найди 3 памятника",
+        "description": "Открой три памятника архитектуры в центре города",
+        "reward": "100 XP",
+        "duration": "7 дней",
+        "trigger_rules": "[{\"type\":\"POI_TYPE_COUNT\",\"poiType\":\"monument\",\"count\":3}]",
+        "note": null,
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z"
+      }
+    },
+    {
+      "label": "QUEST",
+      "key": {
+        "id": 2
+      },
+      "properties": {
+        "id": 2,
+        "name": "Найди 2 музея",
+        "description": "Посети два музея города",
+        "reward": "100 XP",
+        "duration": "7 дней",
+        "trigger_rules": "[{\"type\":\"POI_TYPE_COUNT\",\"poiType\":\"museum\",\"count\":2}]",
+        "note": null,
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z"
+      }
+    },
+    {
+      "label": "QUEST",
+      "key": {
+        "id": 3
+      },
+      "properties": {
+        "id": 3,
+        "name": "Чашечка кофе",
+        "description": "Найди знаменитое кафе",
+        "reward": "50 XP",
+        "duration": "3 дня",
+        "trigger_rules": "[{\"type\":\"POI_TYPE_COUNT\",\"poiType\":\"cafe\",\"count\":1}]",
+        "note": null,
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z"
+      }
+    },
+    {
+      "label": "QUEST",
+      "key": {
+        "id": 4
+      },
+      "properties": {
+        "id": 4,
+        "name": "Таинственный замок",
+        "description": "Отыщи Михайловский замок",
+        "reward": "150 XP",
+        "duration": "7 дней",
+        "trigger_rules": "[{\"type\":\"POI_ID\",\"poiId\":10}]",
+        "note": null,
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z"
+      }
+    },
+    {
+      "label": "QUEST",
+      "key": {
+        "id": 5
+      },
+      "properties": {
+        "id": 5,
+        "name": "Прогулка по городу",
+        "description": "Пройди 5 километров пешком",
+        "reward": "150 XP",
+        "duration": "14 дней",
+        "trigger_rules": "[{\"type\":\"DISTANCE_KM\",\"distanceKm\":5}]",
+        "note": null,
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z"
+      }
+    },
+    {
+      "label": "QUEST",
+      "key": {
+        "id": 6
+      },
+      "properties": {
+        "id": 6,
+        "name": "Исследователь районов",
+        "description": "Побывай в трёх разных H3-ячейках",
+        "reward": "100 XP",
+        "duration": "7 дней",
+        "trigger_rules": "[{\"type\":\"CELL_COUNT\",\"count\":3}]",
+        "note": null,
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z"
+      }
+    },
+    {
+      "label": "QUEST",
+      "key": {
+        "id": 7
+      },
+      "properties": {
+        "id": 7,
+        "name": "Продвинутый коллекционер",
+        "description": "Сначала заверши квест «Найди 2 музея»",
+        "reward": "200 XP",
+        "duration": "14 дней",
+        "trigger_rules": "[{\"type\":\"QUEST_COMPLETED\",\"questId\":2}]",
+        "note": "Зависит от квеста «Найди 2 музея»",
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z"
+      }
+    },
+    {
+      "label": "QUEST",
+      "key": {
+        "id": 8
+      },
+      "properties": {
+        "id": 8,
+        "name": "Отдохни в парке",
+        "description": "Найди два парка",
+        "reward": "100 XP",
+        "duration": "7 дней",
+        "trigger_rules": "[{\"type\":\"POI_TYPE_COUNT\",\"poiType\":\"park\",\"count\":2}]",
+        "note": null,
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z"
+      }
+    },
+    {
+      "label": "ACHIEVEMENT",
+      "key": {
+        "id": 1
+      },
+      "properties": {
+        "id": 1,
+        "name": "Первый шаг",
+        "description": "Посети первую ячейку",
+        "reward": "50 XP",
+        "trigger_rules": "[{\"type\":\"CELL_COUNT\",\"count\":1}]",
+        "note": null,
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z"
+      }
+    },
+    {
+      "label": "ACHIEVEMENT",
+      "key": {
+        "id": 2
+      },
+      "properties": {
+        "id": 2,
+        "name": "Гуру карты",
+        "description": "Посети пять ячеек",
+        "reward": "150 XP",
+        "trigger_rules": "[{\"type\":\"CELL_COUNT\",\"count\":5}]",
+        "note": null,
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z"
+      }
+    },
+    {
+      "label": "ACHIEVEMENT",
+      "key": {
+        "id": 3
+      },
+      "properties": {
+        "id": 3,
+        "name": "Марафонец",
+        "description": "Пройди 10 километров",
+        "reward": "200 XP",
+        "trigger_rules": "[{\"type\":\"DISTANCE_KM\",\"distanceKm\":10}]",
+        "note": null,
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z"
+      }
+    },
+    {
+      "label": "ACHIEVEMENT",
+      "key": {
+        "id": 4
+      },
+      "properties": {
+        "id": 4,
+        "name": "Любитель истории",
+        "description": "Открой три памятника",
+        "reward": "100 XP",
+        "trigger_rules": "[{\"type\":\"POI_TYPE_COUNT\",\"poiType\":\"monument\",\"count\":3}]",
+        "note": null,
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z"
+      }
+    },
+    {
+      "label": "ACHIEVEMENT",
+      "key": {
+        "id": 5
+      },
+      "properties": {
+        "id": 5,
+        "name": "Искусствовед",
+        "description": "Посети два музея",
+        "reward": "100 XP",
+        "trigger_rules": "[{\"type\":\"POI_TYPE_COUNT\",\"poiType\":\"museum\",\"count\":2}]",
+        "note": null,
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z"
+      }
+    },
+    {
+      "label": "ACHIEVEMENT",
+      "key": {
+        "id": 6
+      },
+      "properties": {
+        "id": 6,
+        "name": "Гурман",
+        "description": "Найди кафе",
+        "reward": "50 XP",
+        "trigger_rules": "[{\"type\":\"POI_TYPE_COUNT\",\"poiType\":\"cafe\",\"count\":1}]",
+        "note": null,
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z"
+      }
+    },
+    {
+      "label": "ACHIEVEMENT",
+      "key": {
+        "id": 7
+      },
+      "properties": {
+        "id": 7,
+        "name": "Парковый житель",
+        "description": "Найди два парка",
+        "reward": "100 XP",
+        "trigger_rules": "[{\"type\":\"POI_TYPE_COUNT\",\"poiType\":\"park\",\"count\":2}]",
+        "note": null,
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z"
+      }
+    },
+    {
+      "label": "ACHIEVEMENT",
+      "key": {
+        "id": 8
+      },
+      "properties": {
+        "id": 8,
+        "name": "Хранитель замка",
+        "description": "Найди Михайловский замок и заверши квест «Таинственный замок»",
+        "reward": "200 XP",
+        "trigger_rules": "[{\"type\":\"POI_ID\",\"poiId\":10}]",
+        "note": null,
+        "created_at": "2026-09-01T00:00:00.000Z",
+        "updated_at": "2026-09-01T00:00:00.000Z"
+      }
+    },
+    {
+      "label": "EVENT_LOG",
+      "key": {
+        "id": 1
+      },
+      "properties": {
+        "id": 1,
+        "type": "USER_REGISTERED",
+        "user_id": 1,
+        "entity_id": null,
+        "description": "User player registered",
+        "details": "{\"username\":\"player\"}",
+        "timestamp": "2026-09-01T10:00:00.000Z",
+        "priority": "Low",
+        "entity_type": "User"
+      }
+    },
+    {
+      "label": "EVENT_LOG",
+      "key": {
+        "id": 2
+      },
+      "properties": {
+        "id": 2,
+        "type": "CELL_VISITED",
+        "user_id": 1,
+        "entity_id": null,
+        "description": "User player entered cell 89110606407ffff",
+        "details": "{\"cell\":\"89110606407ffff\",\"lat\":59.9386,\"lon\":30.3151}",
+        "timestamp": "2026-09-01T10:05:00.000Z",
+        "priority": "Low",
+        "entity_type": "User"
+      }
+    },
+    {
+      "label": "EVENT_LOG",
+      "key": {
+        "id": 3
+      },
+      "properties": {
+        "id": 3,
+        "type": "POI_DISCOVERED",
+        "user_id": 1,
+        "entity_id": 1,
+        "description": "User player discovered Дворцовая площадь",
+        "details": "{\"poiId\":1,\"poiName\":\"Дворцовая площадь\",\"poiType\":\"monument\"}",
+        "timestamp": "2026-09-01T10:05:00.000Z",
+        "priority": "Low",
+        "entity_type": "POI"
+      }
+    },
+    {
+      "label": "EVENT_LOG",
+      "key": {
+        "id": 4
+      },
+      "properties": {
+        "id": 4,
+        "type": "POI_DISCOVERED",
+        "user_id": 1,
+        "entity_id": 3,
+        "description": "User player discovered Казанский собор",
+        "details": "{\"poiId\":3,\"poiName\":\"Казанский собор\",\"poiType\":\"monument\"}",
+        "timestamp": "2026-09-02T14:20:00.000Z",
+        "priority": "Low",
+        "entity_type": "POI"
+      }
+    },
+    {
+      "label": "EVENT_LOG",
+      "key": {
+        "id": 5
+      },
+      "properties": {
+        "id": 5,
+        "type": "POI_DISCOVERED",
+        "user_id": 1,
+        "entity_id": 9,
+        "description": "User player discovered Кафе «Зингер»",
+        "details": "{\"poiId\":9,\"poiName\":\"Кафе «Зингер»\",\"poiType\":\"cafe\"}",
+        "timestamp": "2026-09-02T14:25:00.000Z",
+        "priority": "Low",
+        "entity_type": "POI"
+      }
+    },
+    {
+      "label": "EVENT_LOG",
+      "key": {
+        "id": 6
+      },
+      "properties": {
+        "id": 6,
+        "type": "QUEST_COMPLETED",
+        "user_id": 1,
+        "entity_id": 2,
+        "description": "User player completed quest Найди 2 музея",
+        "details": "{\"questId\":2,\"questName\":\"Найди 2 музея\",\"reward\":\"100 XP\"}",
+        "timestamp": "2026-09-05T17:40:00.000Z",
+        "priority": "Medium",
+        "entity_type": "Quest"
+      }
+    },
+    {
+      "label": "EVENT_LOG",
+      "key": {
+        "id": 7
+      },
+      "properties": {
+        "id": 7,
+        "type": "ACHIEVEMENT_UNLOCKED",
+        "user_id": 1,
+        "entity_id": 4,
+        "description": "User player unlocked achievement Любитель истории",
+        "details": "{\"achievementId\":4,\"achievementName\":\"Любитель истории\"}",
+        "timestamp": "2026-09-05T17:41:00.000Z",
+        "priority": "Medium",
+        "entity_type": "Achievement"
+      }
+    },
+    {
+      "label": "EVENT_LOG",
+      "key": {
+        "id": 8
+      },
+      "properties": {
+        "id": 8,
+        "type": "USER_UPDATED",
+        "user_id": 5,
+        "entity_id": 5,
+        "description": "Admin banned user sofia_traveler",
+        "details": "{\"changes\":{\"status\":\"Banned\"}}",
+        "timestamp": "2026-09-15T12:00:00.000Z",
+        "priority": "Medium",
+        "entity_type": "User"
+      }
+    },
+    {
+      "label": "EVENT_LOG",
+      "key": {
+        "id": 9
+      },
+      "properties": {
+        "id": 9,
+        "type": "DATA_EXPORT",
+        "user_id": null,
+        "entity_id": null,
+        "description": "Graph export: 30 nodes, 25 relationships",
+        "details": "{\"nodes\":30,\"relationships\":25}",
+        "timestamp": "2026-09-18T09:00:00.000Z",
+        "priority": "High",
+        "entity_type": "System"
+      }
+    },
+    {
+      "label": "EVENT_LOG",
+      "key": {
+        "id": 10
+      },
+      "properties": {
+        "id": 10,
+        "type": "ADMIN_AUTH",
+        "user_id": null,
+        "entity_id": null,
+        "description": "Admin admin logged in",
+        "details": "{\"action\":\"login\"}",
+        "timestamp": "2026-09-20T08:30:00.000Z",
+        "priority": "Low",
+        "entity_type": "Admin"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "type": "CONTAINS",
+      "from": {
+        "label": "CELL",
+        "key": {
+          "index": "89110606407ffff"
+        }
+      },
+      "to": {
+        "label": "POI",
+        "key": {
+          "id": 1
+        }
+      },
+      "properties": {}
+    },
+    {
+      "type": "CONTAINS",
+      "from": {
+        "label": "CELL",
+        "key": {
+          "index": "89110606413ffff"
+        }
+      },
+      "to": {
+        "label": "POI",
+        "key": {
+          "id": 2
+        }
+      },
+      "properties": {}
+    },
+    {
+      "type": "CONTAINS",
+      "from": {
+        "label": "CELL",
+        "key": {
+          "index": "89110606477ffff"
+        }
+      },
+      "to": {
+        "label": "POI",
+        "key": {
+          "id": 3
+        }
+      },
+      "properties": {}
+    },
+    {
+      "type": "CONTAINS",
+      "from": {
+        "label": "CELL",
+        "key": {
+          "index": "8911060642fffff"
+        }
+      },
+      "to": {
+        "label": "POI",
+        "key": {
+          "id": 4
+        }
+      },
+      "properties": {}
+    },
+    {
+      "type": "CONTAINS",
+      "from": {
+        "label": "CELL",
+        "key": {
+          "index": "89110606543ffff"
+        }
+      },
+      "to": {
+        "label": "POI",
+        "key": {
+          "id": 5
+        }
+      },
+      "properties": {}
+    },
+    {
+      "type": "CONTAINS",
+      "from": {
+        "label": "CELL",
+        "key": {
+          "index": "89110606097ffff"
+        }
+      },
+      "to": {
+        "label": "POI",
+        "key": {
+          "id": 6
+        }
+      },
+      "properties": {}
+    },
+    {
+      "type": "CONTAINS",
+      "from": {
+        "label": "CELL",
+        "key": {
+          "index": "891106064abffff"
+        }
+      },
+      "to": {
+        "label": "POI",
+        "key": {
+          "id": 7
+        }
+      },
+      "properties": {}
+    },
+    {
+      "type": "CONTAINS",
+      "from": {
+        "label": "CELL",
+        "key": {
+          "index": "89110606093ffff"
+        }
+      },
+      "to": {
+        "label": "POI",
+        "key": {
+          "id": 8
+        }
+      },
+      "properties": {}
+    },
+    {
+      "type": "CONTAINS",
+      "from": {
+        "label": "CELL",
+        "key": {
+          "index": "89110606477ffff"
+        }
+      },
+      "to": {
+        "label": "POI",
+        "key": {
+          "id": 9
+        }
+      },
+      "properties": {}
+    },
+    {
+      "type": "CONTAINS",
+      "from": {
+        "label": "CELL",
+        "key": {
+          "index": "89110606087ffff"
+        }
+      },
+      "to": {
+        "label": "POI",
+        "key": {
+          "id": 10
+        }
+      },
+      "properties": {}
+    },
+    {
+      "type": "DEPENDS_ON",
+      "from": {
+        "label": "QUEST",
+        "key": {
+          "id": 7
+        }
+      },
+      "to": {
+        "label": "QUEST",
+        "key": {
+          "id": 2
+        }
+      },
+      "properties": {}
+    },
+    {
+      "type": "REQUIRES_QUEST",
+      "from": {
+        "label": "ACHIEVEMENT",
+        "key": {
+          "id": 8
+        }
+      },
+      "to": {
+        "label": "QUEST",
+        "key": {
+          "id": 4
+        }
+      },
+      "properties": {}
+    },
+    {
+      "type": "VISITED",
+      "from": {
+        "label": "USER",
+        "key": {
+          "id": 1
+        }
+      },
+      "to": {
+        "label": "CELL",
+        "key": {
+          "index": "89110606407ffff"
+        }
+      },
+      "properties": {
+        "first_visited": "2026-09-01T10:05:00.000Z",
+        "last_visited": "2026-09-01T10:05:00.000Z",
+        "visit_count": 1
+      }
+    },
+    {
+      "type": "VISITED",
+      "from": {
+        "label": "USER",
+        "key": {
+          "id": 1
+        }
+      },
+      "to": {
+        "label": "CELL",
+        "key": {
+          "index": "89110606477ffff"
+        }
+      },
+      "properties": {
+        "first_visited": "2026-09-02T14:20:00.000Z",
+        "last_visited": "2026-09-02T14:25:00.000Z",
+        "visit_count": 2
+      }
+    },
+    {
+      "type": "VISITED",
+      "from": {
+        "label": "USER",
+        "key": {
+          "id": 1
+        }
+      },
+      "to": {
+        "label": "CELL",
+        "key": {
+          "index": "8911060642fffff"
+        }
+      },
+      "properties": {
+        "first_visited": "2026-09-03T11:00:00.000Z",
+        "last_visited": "2026-09-03T11:00:00.000Z",
+        "visit_count": 1
+      }
+    },
+    {
+      "type": "VISITED",
+      "from": {
+        "label": "USER",
+        "key": {
+          "id": 2
+        }
+      },
+      "to": {
+        "label": "CELL",
+        "key": {
+          "index": "89110606543ffff"
+        }
+      },
+      "properties": {
+        "first_visited": "2026-09-02T15:00:00.000Z",
+        "last_visited": "2026-09-02T15:00:00.000Z",
+        "visit_count": 1
+      }
+    },
+    {
+      "type": "DISCOVERED",
+      "from": {
+        "label": "USER",
+        "key": {
+          "id": 1
+        }
+      },
+      "to": {
+        "label": "POI",
+        "key": {
+          "id": 1
+        }
+      },
+      "properties": {
+        "timestamp": "2026-09-01T10:05:00.000Z"
+      }
+    },
+    {
+      "type": "DISCOVERED",
+      "from": {
+        "label": "USER",
+        "key": {
+          "id": 1
+        }
+      },
+      "to": {
+        "label": "POI",
+        "key": {
+          "id": 3
+        }
+      },
+      "properties": {
+        "timestamp": "2026-09-02T14:20:00.000Z"
+      }
+    },
+    {
+      "type": "DISCOVERED",
+      "from": {
+        "label": "USER",
+        "key": {
+          "id": 1
+        }
+      },
+      "to": {
+        "label": "POI",
+        "key": {
+          "id": 9
+        }
+      },
+      "properties": {
+        "timestamp": "2026-09-02T14:25:00.000Z"
+      }
+    },
+    {
+      "type": "DISCOVERED",
+      "from": {
+        "label": "USER",
+        "key": {
+          "id": 1
+        }
+      },
+      "to": {
+        "label": "POI",
+        "key": {
+          "id": 4
+        }
+      },
+      "properties": {
+        "timestamp": "2026-09-03T11:00:00.000Z"
+      }
+    },
+    {
+      "type": "DISCOVERED",
+      "from": {
+        "label": "USER",
+        "key": {
+          "id": 2
+        }
+      },
+      "to": {
+        "label": "POI",
+        "key": {
+          "id": 5
+        }
+      },
+      "properties": {
+        "timestamp": "2026-09-02T15:00:00.000Z"
+      }
+    },
+    {
+      "type": "HAS_QUEST",
+      "from": {
+        "label": "USER",
+        "key": {
+          "id": 1
+        }
+      },
+      "to": {
+        "label": "QUEST",
+        "key": {
+          "id": 1
+        }
+      },
+      "properties": {
+        "status": "IN_PROGRESS",
+        "progress": "3/3",
+        "started_at": "2026-09-01T10:10:00.000Z",
+        "completed_at": null
+      }
+    },
+    {
+      "type": "HAS_QUEST",
+      "from": {
+        "label": "USER",
+        "key": {
+          "id": 1
+        }
+      },
+      "to": {
+        "label": "QUEST",
+        "key": {
+          "id": 2
+        }
+      },
+      "properties": {
+        "status": "COMPLETED",
+        "progress": "2/2",
+        "started_at": "2026-09-03T09:00:00.000Z",
+        "completed_at": "2026-09-05T17:40:00.000Z"
+      }
+    },
+    {
+      "type": "HAS_QUEST",
+      "from": {
+        "label": "USER",
+        "key": {
+          "id": 1
+        }
+      },
+      "to": {
+        "label": "QUEST",
+        "key": {
+          "id": 8
+        }
+      },
+      "properties": {
+        "status": "COMPLETED",
+        "progress": "2/2",
+        "started_at": "2026-09-06T09:00:00.000Z",
+        "completed_at": "2026-09-06T12:00:00.000Z"
+      }
+    },
+    {
+      "type": "HAS_QUEST",
+      "from": {
+        "label": "USER",
+        "key": {
+          "id": 2
+        }
+      },
+      "to": {
+        "label": "QUEST",
+        "key": {
+          "id": 5
+        }
+      },
+      "properties": {
+        "status": "IN_PROGRESS",
+        "progress": "2.1/5 km",
+        "started_at": "2026-09-04T10:00:00.000Z",
+        "completed_at": null
+      }
+    },
+    {
+      "type": "HAS_QUEST",
+      "from": {
+        "label": "USER",
+        "key": {
+          "id": 3
+        }
+      },
+      "to": {
+        "label": "QUEST",
+        "key": {
+          "id": 1
+        }
+      },
+      "properties": {
+        "status": "COMPLETED",
+        "progress": "3/3",
+        "started_at": "2026-09-03T12:00:00.000Z",
+        "completed_at": "2026-09-07T15:30:00.000Z"
+      }
+    },
+    {
+      "type": "HAS_QUEST",
+      "from": {
+        "label": "USER",
+        "key": {
+          "id": 6
+        }
+      },
+      "to": {
+        "label": "QUEST",
+        "key": {
+          "id": 6
+        }
+      },
+      "properties": {
+        "status": "COMPLETED",
+        "progress": "3/3",
+        "started_at": "2026-09-09T08:00:00.000Z",
+        "completed_at": "2026-09-11T19:00:00.000Z"
+      }
+    },
+    {
+      "type": "UNLOCKED",
+      "from": {
+        "label": "USER",
+        "key": {
+          "id": 1
+        }
+      },
+      "to": {
+        "label": "ACHIEVEMENT",
+        "key": {
+          "id": 1
+        }
+      },
+      "properties": {
+        "unlocked_at": "2026-09-01T10:05:00.000Z"
+      }
+    },
+    {
+      "type": "UNLOCKED",
+      "from": {
+        "label": "USER",
+        "key": {
+          "id": 1
+        }
+      },
+      "to": {
+        "label": "ACHIEVEMENT",
+        "key": {
+          "id": 4
+        }
+      },
+      "properties": {
+        "unlocked_at": "2026-09-05T17:41:00.000Z"
+      }
+    },
+    {
+      "type": "UNLOCKED",
+      "from": {
+        "label": "USER",
+        "key": {
+          "id": 1
+        }
+      },
+      "to": {
+        "label": "ACHIEVEMENT",
+        "key": {
+          "id": 6
+        }
+      },
+      "properties": {
+        "unlocked_at": "2026-09-02T14:25:00.000Z"
+      }
+    },
+    {
+      "type": "UNLOCKED",
+      "from": {
+        "label": "USER",
+        "key": {
+          "id": 2
+        }
+      },
+      "to": {
+        "label": "ACHIEVEMENT",
+        "key": {
+          "id": 1
+        }
+      },
+      "properties": {
+        "unlocked_at": "2026-09-02T15:00:00.000Z"
+      }
+    }
+  ]
+}
