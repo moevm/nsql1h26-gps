@@ -7,7 +7,7 @@
   import { client, downloadFile, unwrap } from "../../lib/api";
   import { fmtDateShort, fmtDateTime, levelFromExp } from "../../lib/format";
   import { toast } from "../../lib/toast.svelte";
-  import type { AdminUserDetail } from "../../lib/types";
+  import type { Achievement, AdminUserDetail, Quest } from "../../lib/types";
 
   const cfg = ADMIN_ENTITY_CONFIGS.users;
 
@@ -58,20 +58,31 @@
 
   interface UserForm {
     username: string;
+    password: string;
     status: "Active" | "Banned";
     avatar: string | null;
   }
 
   let formOpen = $state(false);
+  let formMode = $state<"create" | "edit">("create");
   let formId = $state<number | null>(null);
-  let form = $state<UserForm>({ username: "", status: "Active", avatar: null });
+  let form = $state<UserForm>({ username: "", password: "", status: "Active", avatar: null });
   let formBusy = $state(false);
   let formError = $state<string | null>(null);
   let refreshTick = $state(0);
 
+  function openCreate(): void {
+    formMode = "create";
+    formId = null;
+    form = { username: "", password: "", status: "Active", avatar: null };
+    formError = null;
+    formOpen = true;
+  }
+
   function openEdit(u: AdminUserDetail): void {
+    formMode = "edit";
     formId = u.id;
-    form = { username: u.username, status: u.status, avatar: u.avatar };
+    form = { username: u.username, password: "", status: u.status, avatar: u.avatar };
     formError = null;
     formOpen = true;
   }
@@ -96,19 +107,74 @@
     formBusy = true;
     formError = null;
     try {
-      await unwrap(
-        await client.admin.users({ id: formId! }).patch({
-          username: form.username,
-          status: form.status,
-        }),
-      );
-      toast("ok", "User updated");
+      if (formMode === "create") {
+        await unwrap(
+          await client.admin.users.post({
+            username: form.username,
+            password: form.password,
+            status: form.status,
+          }),
+        );
+        toast("ok", "User created");
+      } else {
+        await unwrap(
+          await client.admin.users({ id: formId! }).patch({
+            username: form.username,
+            status: form.status,
+          }),
+        );
+        toast("ok", "User updated");
+      }
       formOpen = false;
       refreshTick++;
     } catch (e) {
       formError = e instanceof Error ? e.message : "Error";
     } finally {
       formBusy = false;
+    }
+  }
+
+  let questList = $state<Quest[]>([]);
+  let achievementList = $state<Achievement[]>([]);
+  $effect(() => {
+    void client.admin.quests
+      .get({ query: { page: 1, pageSize: 100 } })
+      .then(unwrap)
+      .then((r) => (questList = r.items))
+      .catch(() => {});
+    void client.admin.achievements
+      .get({ query: { page: 1, pageSize: 100 } })
+      .then(unwrap)
+      .then((r) => (achievementList = r.items))
+      .catch(() => {});
+  });
+
+  let questAssign = $state<Record<number, string>>({});
+  let achievementAssign = $state<Record<number, string>>({});
+
+  async function assignQuest(u: AdminUserDetail, reload: () => Promise<void>): Promise<void> {
+    const sel = questAssign[u.id];
+    if (!sel) return;
+    try {
+      await unwrap(await client.admin.users({ id: u.id }).quests.post({ questId: Number(sel) }));
+      toast("ok", "Quest assigned");
+      questAssign = { ...questAssign, [u.id]: "" };
+      await reload();
+    } catch (e) {
+      toast("error", e instanceof Error ? e.message : "Error");
+    }
+  }
+
+  async function assignAchievement(u: AdminUserDetail, reload: () => Promise<void>): Promise<void> {
+    const sel = achievementAssign[u.id];
+    if (!sel) return;
+    try {
+      await unwrap(await client.admin.users({ id: u.id }).achievements.post({ achievementId: Number(sel) }));
+      toast("ok", "Achievement assigned");
+      achievementAssign = { ...achievementAssign, [u.id]: "" };
+      await reload();
+    } catch (e) {
+      toast("error", e instanceof Error ? e.message : "Error");
     }
   }
 </script>
@@ -181,6 +247,40 @@
     {/each}
     {#if u.quests.length === 0}<span class="muted">none</span>{/if}
   </div>
+  {#if questList.some((q) => !u.quests.some((uq) => uq.id === q.id))}
+    <div class="assign-row">
+      <select bind:value={questAssign[u.id]}>
+        <option value="">assign quest</option>
+        {#each questList.filter((q) => !u.quests.some((uq) => uq.id === q.id)) as q (q.id)}
+          <option value={q.id}>{q.name}</option>
+        {/each}
+      </select>
+      <button class="btn btn-ghost" disabled={!questAssign[u.id]} onclick={() => assignQuest(u, reload)}>
+        <Icon name="add" /> Assign
+      </button>
+    </div>
+  {/if}
+
+  <div class="field-label">Achievements ({u.achievements.length})</div>
+  <div class="chips">
+    {#each u.achievements as a (a.id)}
+      <span class="chip static">{a.name}</span>
+    {/each}
+    {#if u.achievements.length === 0}<span class="muted">none</span>{/if}
+  </div>
+  {#if achievementList.some((a) => !u.achievements.some((ua) => ua.id === a.id))}
+    <div class="assign-row">
+      <select bind:value={achievementAssign[u.id]}>
+        <option value="">assign achievement</option>
+        {#each achievementList.filter((a) => !u.achievements.some((ua) => ua.id === a.id)) as a (a.id)}
+          <option value={a.id}>{a.name}</option>
+        {/each}
+      </select>
+      <button class="btn btn-ghost" disabled={!achievementAssign[u.id]} onclick={() => assignAchievement(u, reload)}>
+        <Icon name="add" /> Assign
+      </button>
+    </div>
+  {/if}
 
   <div class="field-label">Activity log</div>
   <table class="tbl">
@@ -226,25 +326,32 @@
 {/snippet}
 
 {#if formOpen}
-  <Modal title={`Edit user #${formId}`} onclose={() => (formOpen = false)}>
+  <Modal title={formMode === "create" ? "New user" : `Edit user #${formId}`} onclose={() => (formOpen = false)}>
     <div class="form">
       {#if formError}<div class="error">{formError}</div>{/if}
 
-      <div class="avatar-row">
-        <Avatar avatar={form.avatar} name={form.username} size={56} />
-        <label class="btn btn-ghost">
-          Upload avatar
-          <input
-            type="file"
-            accept="image/png,image/jpeg,image/webp,image/gif"
-            class="file-input"
-            onchange={uploadAvatar}
-          />
-        </label>
-      </div>
+      {#if formMode === "edit"}
+        <div class="avatar-row">
+          <Avatar avatar={form.avatar} name={form.username} size={56} />
+          <label class="btn btn-ghost">
+            Upload avatar
+            <input
+              type="file"
+              accept="image/png,image/jpeg,image/webp,image/gif"
+              class="file-input"
+              onchange={uploadAvatar}
+            />
+          </label>
+        </div>
+      {/if}
 
       <div class="field-label">Username</div>
       <input type="text" placeholder="username" bind:value={form.username} />
+
+      {#if formMode === "create"}
+        <div class="field-label">Password</div>
+        <input type="password" placeholder="at least 6 characters" bind:value={form.password} />
+      {/if}
 
       <div class="field-label">Status</div>
       <div class="chips">
@@ -264,10 +371,10 @@
         <button class="btn btn-ghost" onclick={() => (formOpen = false)}>Cancel</button>
         <button
           class="btn btn-primary"
-          disabled={formBusy || form.username.trim().length < 3}
+          disabled={formBusy || form.username.trim().length < 3 || (formMode === "create" && form.password.length < 6)}
           onclick={() => submitForm()}
         >
-          Save
+          {formMode === "create" ? "Create" : "Save"}
         </button>
       </div>
     </div>
@@ -293,6 +400,8 @@
   ]}
   emptyTitle="No users selected"
   emptySub="Select one to see his profile"
+  createTitle="New user"
+  onCreate={openCreate}
   {refreshTick}
   {cell}
   {detail}
@@ -348,6 +457,17 @@
 
   .chip.static:hover {
     color: var(--text);
+  }
+
+  .assign-row {
+    display: flex;
+    gap: 10px;
+    margin: 6px 0 14px;
+  }
+
+  .assign-row select {
+    flex: 1;
+    min-width: 0;
   }
 
   .form {

@@ -111,42 +111,27 @@
     return Number.isNaN(d.getTime()) ? bucket : format(d, "dd.MM");
   }
 
-  const onlineSeries = $derived.by(() => {
-    const byDay = new Map<string, Set<number>>();
-    for (const l of logs) {
-      if (l.user_id == null) continue;
-      const day = l.timestamp.slice(0, 10);
-      if (!byDay.has(day)) byDay.set(day, new Set());
-      byDay.get(day)!.add(l.user_id);
-    }
-    return [...byDay.entries()]
-      .sort((a, b) => a[0].localeCompare(b[0]))
-      .map(([day, users]) => {
-        const d = new Date(day);
-        return { label: d.toLocaleDateString("ru-RU", { day: "2-digit", month: "2-digit" }), value: users.size };
-      });
-  });
+  const periodLabel = $derived(
+    period === "custom" ? "the period" : `last ${period === "today" ? "day" : period === "month" ? "month" : "week"}`,
+  );
 
-  let questTotal = $state(0);
-  $effect(() => {
-    if (!stats) return;
-    void client.admin.quests
-      .get({ query: { page: 1, pageSize: 1 } })
-      .then(unwrap)
-      .then((r) => (questTotal = r.total))
-      .catch(() => {});
-  });
+  const onlineSeries = $derived(
+    (stats?.activeSeries ?? []).map((s) => ({ label: fmtBucket(s.bucket, "day"), value: s.count })),
+  );
+
+  const eventsTotal = $derived(stats ? stats.entityTypes.reduce((sum, r) => sum + r.c, 0) : 0);
+
+  const QUEST_STATUS_META: Record<string, { label: string; color: string }> = {
+    COMPLETED: { label: "Completed", color: "#8979FF" },
+    IN_PROGRESS: { label: "In progress", color: "#FF928A" },
+    NOT_ACCEPTED: { label: "Not accepted", color: "#3CC3DF" },
+  };
 
   const questStatusData = $derived.by(() => {
     if (!stats) return [];
-    const completed = stats.questStatus.find((s) => s.status === "COMPLETED")?.c ?? 0;
-    const inProgress = stats.questStatus.find((s) => s.status === "IN_PROGRESS")?.c ?? 0;
-    const notAccepted = Math.max(0, questTotal - completed - inProgress);
-    const all = [
-      { label: "Completed", value: completed, color: "#8979FF" },
-      { label: "In progress", value: inProgress, color: "#FF928A" },
-      { label: "Not accepted", value: notAccepted, color: "#3CC3DF" },
-    ];
+    const all = stats.questStatus
+      .filter((s) => QUEST_STATUS_META[s.status])
+      .map((s) => ({ label: QUEST_STATUS_META[s.status]!.label, value: s.c, color: QUEST_STATUS_META[s.status]!.color }));
     if (questFilter === "All") return all;
     return all.filter((d) => d.label.toLowerCase().startsWith(questFilter.toLowerCase()));
   });
@@ -162,15 +147,27 @@
   const entityData = $derived.by(() => {
     if (!stats) return [];
     const rows = [...stats.entityTypes].sort((a, b) => b.c - a.c);
-    const top = rows.slice(0, 3).map((r) => ({ label: r.entityType, value: r.c, color: ENTITY_COLORS[r.entityType] ?? "#8A8A8A" }));
-    const rest = rows.slice(3);
-    const out = top;
-    if (rest.length > 0) {
-      out.push({ label: "Other", value: rest.reduce((s, r) => s + r.c, 0), color: "#8A8A8A" });
+    const colored = (r: { entityType: string; c: number }) => ({
+      label: r.entityType,
+      value: r.c,
+      color: ENTITY_COLORS[r.entityType] ?? "#8A8A8A",
+    });
+    if (entityFilter !== "All") {
+      if (entityFilter === "Other") {
+        const rest = rows.slice(3);
+        return rest.length > 0
+          ? [{ label: "Other", value: rest.reduce((s, r) => s + r.c, 0), color: "#8A8A8A" }]
+          : [];
+      }
+      const want = entityFilter === "Users" ? "User" : entityFilter;
+      return rows.filter((r) => r.entityType === want).map(colored);
     }
-    if (entityFilter === "All") return out;
-    const want = entityFilter === "Users" ? "User" : entityFilter;
-    return out.filter((d) => d.label === want);
+    const top = rows.slice(0, 3).map(colored);
+    const rest = rows.slice(3);
+    if (rest.length > 0) {
+      top.push({ label: "Other", value: rest.reduce((s, r) => s + r.c, 0), color: "#8A8A8A" });
+    }
+    return top;
   });
 
   const priorityTag = (p: LogEntry["priority"]) =>
@@ -238,20 +235,20 @@
   {:else if stats}
     <div class="kpi-row">
       <div class="panel kpi">
-        <div class="kpi-value" style="color:var(--red)">{stats.totals.totalUsers}</div>
-        <div class="kpi-label">Total users</div>
+        <div class="kpi-value" style="color:var(--red)">{stats.totals.newUsers}</div>
+        <div class="kpi-label">New users for {periodLabel}</div>
       </div>
       <div class="panel kpi">
         <div class="kpi-value" style="color:var(--red)">{stats.totals.activeUsers}</div>
-        <div class="kpi-label">Active users for last {period === "today" ? "day" : period === "month" ? "month" : "week"}</div>
+        <div class="kpi-label">Active users for {periodLabel}</div>
       </div>
       <div class="panel kpi">
         <div class="kpi-value" style="color:var(--muted)">{stats.totals.completedQuests}</div>
-        <div class="kpi-label">Completed quests for last {period === "today" ? "day" : period === "month" ? "month" : "week"}</div>
+        <div class="kpi-label">Completed quests for {periodLabel}</div>
       </div>
       <div class="panel kpi">
-        <div class="kpi-value" style="color:var(--muted)">{fmtCompact(stats.database.nodes + stats.database.relationships)}</div>
-        <div class="kpi-label">Entities in database</div>
+        <div class="kpi-value" style="color:var(--muted)">{fmtCompact(eventsTotal)}</div>
+        <div class="kpi-label">Events for {periodLabel}</div>
       </div>
     </div>
 

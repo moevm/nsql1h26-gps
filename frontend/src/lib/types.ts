@@ -126,6 +126,7 @@ export interface AdminStats {
   totals: { totalUsers: number; newUsers: number; activeUsers: number; completedQuests: number };
   database: { nodes: number; relationships: number };
   series: { bucket: string; count: number }[];
+  activeSeries: { bucket: string; count: number }[];
   questStatus: { status: string; c: number }[];
   entityTypes: { entityType: string; c: number }[];
 }

@@ -82,6 +82,12 @@ interface UserPatch {
   username?: string;
 }
 
+interface UserCreateBody {
+  username: string;
+  password: string;
+  status?: "Active" | "Banned";
+}
+
 interface QuestBody {
   name: string;
   description?: string;
@@ -115,6 +121,8 @@ interface AdminUserParams {
   get(): Tr<AdminUserDetail>;
   patch(b: UserPatch): Tr<AdminUserDetail>;
   avatar: { post(b: { file: File }): Tr<{ avatar: string }> };
+  quests: { post(b: { questId: number }): Tr<{ questId: number; status: string }> };
+  achievements: { post(b: { achievementId: number }): Tr<{ achievementId: number; unlockedAt: string }> };
 }
 
 interface AdminItemParams<T, P> {
@@ -137,6 +145,7 @@ export interface ApiClient {
     };
     users: {
       get(q?: Query): Tr<AdminListResponse<UserDto>>;
+      post(b: UserCreateBody): Tr<UserDto>;
       (p: { id: number }): AdminUserParams;
     };
     quests: {
