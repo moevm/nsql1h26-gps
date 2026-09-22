@@ -154,7 +154,7 @@
       "properties": {
         "id": 1,
         "username": "admin",
-        "password": "admin123",
+        "password": "password",
         "created_at": "2026-09-01T00:00:00.000Z"
       }
     },
