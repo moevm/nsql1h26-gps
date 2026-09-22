@@ -1,8 +1,7 @@
 import config from "../../config";
 import { db } from "../common/db";
 import { importDump, parseDump } from "../common/dump";
-
-const ID_LABELS = ["USER", "ADMIN", "POI", "QUEST", "ACHIEVEMENT", "EVENT_LOG"] as const;
+import { resyncIdCounters } from "../common/ids";
 
 export async function seedIfEmpty(): Promise<boolean> {
   const rows = await db.run("MATCH (n) RETURN count(n) AS c");
@@ -20,21 +19,7 @@ export async function seedIfEmpty(): Promise<boolean> {
   const raw = await file.json();
   const dump = parseDump(raw);
   const { nodes, relationships } = await importDump(db, dump);
-  await initIdCounters();
+  await db.tx((tx) => resyncIdCounters(tx));
   console.log(`[seed] imported ${nodes} nodes, ${relationships} relationships`);
   return true;
-}
-
-async function initIdCounters(): Promise<void> {
-  await db.tx(async (tx) => {
-    for (const label of ID_LABELS) {
-      const rows = await tx.run(`MATCH (n:\`${label}\`) RETURN max(n.id) AS mx`);
-      const max = rows[0]?.mx as number | null;
-      const start = Math.max((max ?? 0) + 1, 1001);
-      await tx.run(
-        `MERGE (c:IdCounter {label: $label}) ON CREATE SET c.value = $start`,
-        { label, start },
-      );
-    }
-  });
 }

@@ -2,6 +2,7 @@ import { Elysia, t } from "elysia";
 import { exportDump, importDump, parseDump } from "../../../common/dump";
 import { logEvent } from "../../../common/log";
 import { db } from "../../../common/db";
+import { resyncIdCounters } from "../../../common/ids";
 
 const exportSchema = t.Object({
   format: t.Literal("json"),
@@ -41,6 +42,7 @@ export const adminDataModule = new Elysia({ name: "admin-data" })
       const raw = JSON.parse(await body.file.text()) as unknown;
       const dump = parseDump(raw);
       const { nodes, relationships } = await importDump(db, dump);
+      await db.tx((tx) => resyncIdCounters(tx));
       await db.tx((tx) =>
         logEvent(tx, {
           type: "DATA_IMPORT",

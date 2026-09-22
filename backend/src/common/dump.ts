@@ -96,6 +96,8 @@ export async function importDump(
   client: GraphClient,
   dump: GraphDump,
 ): Promise<{ nodes: number; relationships: number }> {
+  await client.run("MATCH (n) DETACH DELETE n")
+
   const prepared: DumpNode[] = [];
   for (const n of dump.nodes) {
     const properties = { ...n.properties };
