@@ -36,7 +36,8 @@ services:
     volumes:
       - uploads:/app/data/uploads
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   etl:
     build:
