@@ -14,6 +14,19 @@ export interface EntityConfig {
   defaultSort: { by: string; dir: "asc" | "desc" };
 }
 
+function b64encode(s: string): string {
+  const bytes = new TextEncoder().encode(s);
+  let bin = "";
+  for (const b of bytes) bin += String.fromCharCode(b);
+  return btoa(bin);
+}
+
+function b64decode(b64: string): string {
+  const bin = atob(b64);
+  const bytes = Uint8Array.from(bin, (c) => c.charCodeAt(0));
+  return new TextDecoder().decode(bytes);
+}
+
 export const DEFAULT_OPS: Record<FieldType, string[]> = {
   string: ["eq", "contains", "regex"],
   number: ["eq", "gt", "gte", "lt", "lte", "between"],
@@ -143,7 +156,7 @@ export function parseComplex(query: URLSearchParams): ComplexNode | null {
   const raw = query.get("query");
   if (!raw) return null;
   try {
-    return JSON.parse(atob(raw)) as ComplexNode;
+    return JSON.parse(b64decode(raw)) as ComplexNode;
   } catch {
     return null;
   }
@@ -151,7 +164,7 @@ export function parseComplex(query: URLSearchParams): ComplexNode | null {
 
 export function complexToQuery(node: ComplexNode): URLSearchParams {
   const q = new URLSearchParams();
-  q.set("query", btoa(JSON.stringify(node)));
+  q.set("query", b64encode(JSON.stringify(node)));
   return q;
 }
 

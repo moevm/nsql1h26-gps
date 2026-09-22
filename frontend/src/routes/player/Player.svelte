@@ -56,7 +56,7 @@
       map.panTo([lat, lon]);
       drawCells(r.h3);
 
-      pushFeed(`📍 Переход: +${r.distanceDeltaKm.toFixed(2)} км${r.newCell ? " (новая ячейка)" : ""}`);
+      pushFeed(`Переход: +${r.distanceDeltaKm.toFixed(2)} км${r.newCell ? " (новая ячейка)" : ""}`);
       for (const p of r.newPois) {
         pushFeed(`Новое место: ${p.name} (${p.type})`);
       }
@@ -101,12 +101,14 @@
       await unwrap(await client.me.logout.post());
     } catch {
     }
+    localStorage.removeItem(CELLS_KEY);
+    localStorage.removeItem(POS_KEY);
     clearSession();
     navigate("/player/login");
   }
 
   function drawCells(h3: string): void {
-    visitedCells = [...visitedCells, h3];
+    visitedCells = Array.from(new Set([...visitedCells, h3]));
     localStorage.setItem(CELLS_KEY, JSON.stringify(visitedCells));
     for(const p of cellPolys.values()) {
       p.remove()
